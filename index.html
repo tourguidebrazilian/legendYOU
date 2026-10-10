@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coletor de Evidências Audiovisuais - TCC & Pesquisa Acadêmica</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        academic: {
+                            50: '#f4f6f9',
+                            100: '#e5e9f0',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            accent: '#1e3a8a',
+                            wine: '#881337',
+                            green: '#065f46'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#090d16] text-slate-100 h-full flex flex-col overflow-hidden">
+
+    <!-- HEADER FIXO -->
+    <header class="bg-[#0f172a] border-b border-slate-800 shadow-md shrink-0">
+        <div class="max-w-[98%] mx-auto px-4 py-2 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="p-1.5 bg-academic-accent rounded-lg">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+                </div>
+                <div>
+                    <h1 class="text-sm font-bold tracking-wide text-white">Coletor de Evidências Audiovisuais</h1>
+                    <p class="text-[10px] text-slate-400">Validação de Fontes, Metadados e Transcrição Acadêmica para TCC</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 text-xs bg-[#1e293b] px-3 py-1 rounded-full border border-slate-700">
+                <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                <span class="text-slate-200 text-[11px]">Processamento 100% Local & Seguro</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL TRAVADO NA TELA -->
+    <main class="max-w-[98%] mx-auto px-4 py-2.5 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-3 overflow-hidden">
+        
+        <!-- PAINEL ESQUERDO (5 Colunas) -->
+        <section class="lg:col-span-5 flex flex-col gap-2.5 overflow-hidden">
+            
+            <!-- CARD 1: Metadados da Fonte -->
+            <div class="bg-[#0f172a] p-3 rounded-xl border border-slate-800 shadow-sm space-y-2 shrink-0">
+                <h2 class="text-xs font-semibold text-white flex items-center gap-2 border-b border-slate-800 pb-1">
+                    <button id="btnAbrirYoutube" title="Abrir vídeo no YouTube em nova guia" class="hover:opacity-80 transition cursor-pointer flex items-center justify-center p-1 rounded hover:bg-red-950">
+                        <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </button>
+                    <span>1. Metadados da Fonte (YouTube)</span>
+                </h2>
+                
+                <div class="grid grid-cols-1 gap-1.5">
+                    <div>
+                        <label class="block text-[10px] font-medium text-slate-300 mb-0.5">URL do Vídeo do YouTube</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="youtubeUrl" placeholder="https://www.youtube.com/watch?v=..." 
+                                   class="w-full text-xs p-1.5 bg-[#1e293b] border border-slate-700 text-white rounded-lg focus:ring-2 focus:ring-academic-accent focus:outline-none placeholder-slate-500">
+                            <button id="btnObterMetadados" class="bg-academic-accent hover:bg-blue-800 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition flex items-center gap-1 shrink-0">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                                <span id="txtBtnObter">Obter</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-medium text-slate-300 mb-0.5">Título do Vídeo</label>
+                        <input type="text" id="inputTitulo" placeholder="Ex: Título do Vídeo" 
+                               class="w-full text-xs p-1.5 bg-[#1e293b] border border-slate-700 text-white rounded-lg focus:ring-2 focus:ring-academic-accent focus:outline-none placeholder-slate-500">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[10px] font-medium text-slate-300 mb-0.5">Nome do Canal</label>
+                            <input type="text" id="inputCanal" placeholder="Ex: Canal Oficial" 
+                                   class="w-full text-xs p-1.5 bg-[#1e293b] border border-slate-700 text-white rounded-lg focus:ring-2 focus:ring-academic-accent focus:outline-none placeholder-slate-500">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-medium text-slate-300 mb-0.5">Data de Publicação</label>
+                            <input type="date" id="inputDataPublicacao" 
+                                   class="w-full text-xs p-1.5 bg-[#1e293b] border border-slate-700 text-white rounded-lg focus:ring-2 focus:ring-academic-accent focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[10px] font-medium text-slate-300 mb-0.5">Tempo Total</label>
+                            <input type="text" id="inputTempoTotal" placeholder="Ex: 00:15:30" 
+                                   class="w-full text-xs p-1.5 bg-[#1e293b] border border-slate-700 text-white rounded-lg focus:ring-2 focus:ring-academic-accent focus:outline-none placeholder-slate-500">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-medium text-slate-300 mb-0.5">Janela de Bloco</label>
+                            <select id="intervaloSegundos" class="w-full text-xs p-1.5 bg-[#1e293b] border border-slate-700 text-white rounded-lg focus:ring-2 focus:ring-academic-accent focus:outline-none">
+                                <option value="30">30 segundos</option>
+                                <option value="60" selected>1 minuto (60s)</option>
+                                <option value="120">2 minutos (120s)</option>
+                                <option value="180">3 minutos (180s)</option>
+                                <option value="300">5 minutos (300s)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-medium text-slate-300 mb-0.5">Descrição do Vídeo</label>
+                        <textarea id="inputDescricao" rows="2" placeholder="Descrição do vídeo..." 
+                                  class="w-full text-xs p-1.5 bg-[#1e293b] border border-slate-700 text-white rounded-lg focus:ring-2 focus:ring-academic-accent focus:outline-none placeholder-slate-500"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 2: Entrada do Texto de Transcrição -->
+            <div class="bg-[#0f172a] p-3 rounded-xl border border-slate-800 shadow-sm flex flex-col flex-1 overflow-hidden space-y-1.5">
+                <div class="flex justify-between items-center border-b border-slate-800 pb-1 shrink-0">
+                    <h2 class="text-xs font-semibold text-white flex items-center gap-2">
+                        <svg class="w-4 h-4 text-academic-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        2. Entrada de Transcrição
+                    </h2>
+                </div>
+
+                <p class="text-[10px] text-slate-400 shrink-0">
+                    Cole abaixo o texto copiado da transcrição do YouTube.
+                </p>
+
+                <div class="flex-1 overflow-hidden">
+                    <textarea id="textoTranscricaoBruta" placeholder="Cole aqui o texto copiado do YouTube..." 
+                              class="w-full text-xs p-2.5 bg-[#1e293b] border border-slate-700 text-white rounded-lg focus:ring-2 focus:ring-academic-accent focus:outline-none font-mono placeholder-slate-500 h-full resize-none"></textarea>
+                </div>
+
+                <button id="btnProcessarTranscricao" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white p-2 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-2 shadow-sm shrink-0">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    Estruturar Transcrição em Blocos
+                </button>
+            </div>
+
+        </section>
+
+        <!-- PAINEL DIREITO (7 Colunas) -->
+        <section class="lg:col-span-7 flex flex-col gap-2.5 overflow-hidden">
+
+            <!-- Ficha Completa de Metadados (Ajustada com descrição em linha inteira e ABNT abaixo) -->
+            <div id="cardMetadados" class="bg-[#0f172a] p-3 rounded-xl border border-slate-800 shadow-sm space-y-2 shrink-0">
+                <div class="flex justify-between items-center">
+                    <span class="text-[10px] font-semibold text-blue-300 bg-blue-950/60 px-2 py-0.5 rounded-full border border-blue-800">
+                        Ficha de Auditoria e Metadados
+                    </span>
+                    <span id="dataColeta" class="text-[10px] text-slate-400 font-mono"></span>
+                </div>
+                
+                <h3 id="metaTitulo" class="text-sm font-bold text-white truncate">Aguardando dados do vídeo...</h3>
+
+                <div class="grid grid-cols-3 gap-2 text-xs border-y border-slate-800 py-1">
+                    <div><span class="text-slate-400">Canal:</span> <span id="metaCanal" class="text-slate-200">-</span></div>
+                    <div><span class="text-slate-400">Publicação:</span> <span id="metaPublicacao" class="text-slate-200">-</span></div>
+                    <div><span class="text-slate-400">Duração:</span> <span id="metaDuracao" class="text-slate-200">-</span></div>
+                </div>
+
+                <!-- Descrição ocupando linha inteira com barra de rolagem -->
+                <div>
+                    <span class="text-[10px] font-semibold text-slate-400 block mb-0.5">Descrição do Vídeo:</span>
+                    <div id="metaDescricao" class="text-[11px] text-slate-300 bg-[#1e293b] p-2 rounded border border-slate-700 h-16 overflow-y-auto whitespace-pre-wrap font-sans text-justify">
+                        Nenhuma descrição informada.
+                    </div>
+                </div>
+
+                <!-- Referência da fonte na linha abaixo -->
+                <div class="bg-[#1e293b] p-2 rounded-lg border border-slate-700 space-y-1">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-slate-300 uppercase tracking-wider">Sugestão de Referência ABNT:</span>
+                        <button id="btnCopiarAbnt" class="text-[10px] text-blue-400 hover:underline flex items-center gap-1 font-medium cursor-pointer">
+                            📋 Copiar
+                        </button>
+                    </div>
+                    <p id="citacaoAbnt" class="text-[11px] font-serif text-slate-200 italic bg-[#0f172a] p-1.5 rounded border border-slate-800 truncate">
+                        Aguardando preenchimento dos campos...
+                    </p>
+                </div>
+            </div>
+
+            <!-- VISUALIZAÇÃO DA TRANSCRIÇÃO EM BLOCOS -->
+            <div class="bg-[#0f172a] p-3 rounded-xl border border-slate-800 shadow-sm flex flex-col flex-1 overflow-hidden space-y-2">
+                <div class="flex justify-between items-center border-b border-slate-800 pb-1.5 shrink-0">
+                    <h3 class="text-xs font-bold text-white flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                        Transcrição Estruturada por Janelas Temporais
+                    </h3>
+                </div>
+
+                <div id="listaBlocos" class="space-y-2 overflow-y-auto pr-1 flex-1">
+                    <p class="text-xs text-slate-500 text-center py-8">Nenhum bloco gerado. Cole a transcrição e clique em "Estruturar Transcrição".</p>
+                </div>
+            </div>
+
+            <!-- CARD EXPORTAÇÃO -->
+            <div class="bg-[#0f172a] p-3 rounded-xl border border-slate-800 shadow-sm space-y-1.5 shrink-0">
+                <h3 class="text-xs font-bold text-white flex items-center gap-2">
+                    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    Exportar Relatório Acadêmico
+                </h3>
+
+                <div class="flex flex-wrap gap-2">
+                    <button id="btnExportarDocx" class="bg-academic-accent hover:bg-blue-800 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition flex items-center gap-2 shadow-sm">
+                        📄 Exportar Relatório em Word (.docx)
+                    </button>
+                    <button id="btnExportarTxt" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition flex items-center gap-2 shadow-sm border border-slate-700">
+                        📝 Exportar Arquivo em Texto (.txt)
+                    </button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="bg-[#0f172a] border-t border-slate-800 py-1.5 shrink-0">
+        <div class="max-w-[98%] mx-auto px-4 text-center text-[11px] text-slate-400">
+            Ferramenta Acadêmica para Validação de Fontes Audiovisuais.
+        </div>
+    </footer>
+
+    <script>
+        let estadoApp = {
+            videoId: '',
+            urlAtual: '',
+            titulo: 'Título não informado',
+            canal: '',
+            dataPublicacao: '',
+            tempoTotal: '',
+            descricao: '',
+            dataColeta: new Date().toLocaleString('pt-BR'),
+            intervaloSegundos: 60,
+            blocos: []
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            atualizarDataColeta();
+            vincularInputsEntrada();
+            vincularAcoesAuxiliares();
+        });
+
+        function atualizarDataColeta() {
+            estadoApp.dataColeta = new Date().toLocaleString('pt-BR');
+            document.getElementById('dataColeta').textContent = `Coletado em: ${estadoApp.dataColeta}`;
+        }
+
+        function obterNomeArquivoSanitizado() {
+            const tituloAtual = estadoApp.titulo && estadoApp.titulo !== 'Aguardando dados do vídeo...' 
+                ? estadoApp.titulo 
+                : 'Evidencia_TCC';
+            return tituloAtual.replace(/[\/\\?%*:|"<>]/g, '_').trim();
+        }
+
+        function resetarMetadados() {
+            estadoApp.videoId = '';
+            estadoApp.urlAtual = '';
+            estadoApp.titulo = 'Aguardando dados do vídeo...';
+            estadoApp.canal = '';
+            estadoApp.dataPublicacao = '';
+            estadoApp.tempoTotal = '';
+            estadoApp.descricao = '';
+            estadoApp.blocos = [];
+
+            document.getElementById('inputTitulo').value = '';
+            document.getElementById('inputCanal').value = '';
+            document.getElementById('inputDataPublicacao').value = '';
+            document.getElementById('inputTempoTotal').value = '';
+            document.getElementById('inputDescricao').value = '';
+            document.getElementById('textoTranscricaoBruta').value = '';
+
+            atualizarExibicaoMetadados();
+            renderizarListaBlocos();
+        }
+
+        function vincularInputsEntrada() {
+            document.getElementById('youtubeUrl').addEventListener('input', (e) => {
+                const novaUrl = e.target.value.trim();
+                const idAtual = extrairVideoId(novaUrl);
+                
+                if (idAtual && idAtual !== estadoApp.videoId) {
+                    resetarMetadados();
+                    estadoApp.videoId = idAtual;
+                    estadoApp.urlAtual = novaUrl;
+                }
+            });
+
+            document.getElementById('inputTitulo').addEventListener('input', (e) => {
+                estadoApp.titulo = e.target.value.trim() || 'Título não informado';
+                atualizarExibicaoMetadados();
+            });
+
+            document.getElementById('inputCanal').addEventListener('input', (e) => {
+                estadoApp.canal = e.target.value.trim();
+                atualizarExibicaoMetadados();
+            });
+
+            document.getElementById('inputDataPublicacao').addEventListener('change', (e) => {
+                estadoApp.dataPublicacao = e.target.value;
+                atualizarExibicaoMetadados();
+            });
+
+            document.getElementById('inputTempoTotal').addEventListener('input', (e) => {
+                estadoApp.tempoTotal = e.target.value.trim();
+                atualizarExibicaoMetadados();
+            });
+
+            document.getElementById('inputDescricao').addEventListener('input', (e) => {
+                estadoApp.descricao = e.target.value.trim();
+                atualizarExibicaoMetadados();
+            });
+        }
+
+        function vincularAcoesAuxiliares() {
+            document.getElementById('btnAbrirYoutube').addEventListener('click', () => {
+                const urlInput = document.getElementById('youtubeUrl').value.trim();
+                const videoId = extrairVideoId(urlInput) || estadoApp.videoId;
+                if (videoId) {
+                    window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+                } else if (urlInput.startsWith('http')) {
+                    window.open(urlInput, '_blank');
+                } else {
+                    alert('Por favor, informe uma URL ou ID do vídeo primeiro.');
+                }
+            });
+
+            document.getElementById('btnCopiarAbnt').addEventListener('click', () => {
+                const textoAbnt = document.getElementById('citacaoAbnt').textContent;
+                navigator.clipboard.writeText(textoAbnt).then(() => {
+                    alert('Referência ABNT copiada para a área de transferência!');
+                });
+            });
+        }
+
+        function extrairVideoId(urlOuId) {
+            if (!urlOuId) return '';
+            const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+            const match = urlOuId.match(regExp);
+            return match ? match[1] : (urlOuId.trim().length === 11 ? urlOuId.trim() : '');
+        }
+
+        function converterSegundosParaHHMMSS(segundosTotal) {
+            const h = Math.floor(segundosTotal / 3600);
+            const m = Math.floor((segundosTotal % 3600) / 60);
+            const s = Math.floor(segundosTotal % 60);
+            if (h > 0) {
+                return [h, m, s].map(v => v < 10 ? "0" + v : v).join(":");
+            }
+            return [m, s].map(v => v < 10 ? "0" + v : v).join(":");
+        }
+
+        function formatarTempoCurto(segundosTotal) {
+            const h = Math.floor(segundosTotal / 3600);
+            const m = Math.floor((segundosTotal % 3600) / 60);
+            const s = Math.floor(segundosTotal % 60);
+            const segStr = s < 10 ? "0" + s : s;
+
+            if (h > 0) {
+                const minStr = m < 10 ? "0" + m : m;
+                return `${h}h${minStr}m${segStr}s `;
+            }
+            return `${m}m${segStr}s `;
+        }
+
+        async function buscarMetadadosCompletos(videoId) {
+            const instanciasInvidious = [
+                'https://inv.tux.pizza/api/v1/videos/',
+                'https://invidious.nerqv.de/api/v1/videos/',
+                'https://vid.puffyan.us/api/v1/videos/'
+            ];
+
+            for (const baseUrl of instanciasInvidious) {
+                try {
+                    const res = await fetch(baseUrl + videoId, { signal: AbortSignal.timeout(3500) });
+                    if (res.ok) {
+                        const data = await res.json();
+                        let dataPubFormatada = '';
+                        if (data.published) {
+                            dataPubFormatada = new Date(data.published * 1000).toISOString().split('T')[0];
+                        }
+                        return {
+                            titulo: data.title,
+                            canal: data.author,
+                            descricao: data.description,
+                            dataPublicacao: dataPubFormatada,
+                            tempoTotal: converterSegundosParaHHMMSS(data.lengthSeconds || 0)
+                        };
+                    }
+                } catch (e) {
+                    continue;
+                }
+            }
+
+            try {
+                const resNoembed = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/watch?v=${videoId}`);
+                if (resNoembed.ok) {
+                    const data = await resNoembed.json();
+                    return {
+                        titulo: data.title || `Vídeo ID: ${videoId}`,
+                        canal: data.author_name || '',
+                        descricao: '',
+                        dataPublicacao: '',
+                        tempoTotal: ''
+                    };
+                }
+            } catch (err) {}
+
+            return null;
+        }
+
+        document.getElementById('btnObterMetadados').addEventListener('click', async () => {
+            const inputUrl = document.getElementById('youtubeUrl').value.trim();
+            const videoId = extrairVideoId(inputUrl);
+
+            if (!videoId) {
+                alert('Por favor, informe uma URL ou ID de vídeo válido do YouTube.');
+                return;
+            }
+
+            resetarMetadados();
+
+            const btnObter = document.getElementById('btnObterMetadados');
+            const txtBtn = document.getElementById('txtBtnObter');
+            btnObter.disabled = true;
+            txtBtn.textContent = 'Buscando...';
+
+            estadoApp.videoId = videoId;
+            estadoApp.urlAtual = inputUrl;
+            atualizarDataColeta();
+
+            const dadosObtidos = await buscarMetadadosCompletos(videoId);
+
+            if (dadosObtidos) {
+                estadoApp.titulo = dadosObtidos.titulo || `Vídeo ID: ${videoId}`;
+                document.getElementById('inputTitulo').value = estadoApp.titulo;
+
+                if (dadosObtidos.canal) {
+                    estadoApp.canal = dadosObtidos.canal;
+                    document.getElementById('inputCanal').value = estadoApp.canal;
+                }
+                
+                if (dadosObtidos.dataPublicacao) {
+                    estadoApp.dataPublicacao = dadosObtidos.dataPublicacao;
+                    document.getElementById('inputDataPublicacao').value = estadoApp.dataPublicacao;
+                }
+
+                if (dadosObtidos.tempoTotal) {
+                    estadoApp.tempoTotal = dadosObtidos.tempoTotal;
+                    document.getElementById('inputTempoTotal').value = estadoApp.tempoTotal;
+                }
+
+                if (dadosObtidos.descricao) {
+                    estadoApp.descricao = dadosObtidos.descricao;
+                    document.getElementById('inputDescricao').value = estadoApp.descricao;
+                }
+            } else {
+                estadoApp.titulo = `Vídeo ID: ${videoId}`;
+                document.getElementById('inputTitulo').value = estadoApp.titulo;
+            }
+
+            btnObter.disabled = false;
+            txtBtn.textContent = 'Obter';
+
+            atualizarExibicaoMetadados();
+        });
+
+        function formatarDataPublicacao(dataIso) {
+            if (!dataIso) return '-';
+            const partes = dataIso.split('-');
+            if (partes.length === 3) return `${partes[2]}/${partes[1]}/${partes[0]}`;
+            return dataIso;
+        }
+
+        function atualizarExibicaoMetadados() {
+            document.getElementById('metaTitulo').textContent = estadoApp.titulo || 'Aguardando dados do vídeo...';
+            document.getElementById('metaCanal').textContent = estadoApp.canal || '-';
+            document.getElementById('metaPublicacao').textContent = formatarDataPublicacao(estadoApp.dataPublicacao);
+            document.getElementById('metaDuracao').textContent = estadoApp.tempoTotal || '-';
+            
+            document.getElementById('metaDescricao').textContent = estadoApp.descricao || 'Nenhuma descrição informada.';
+
+            const anoAtual = estadoApp.dataPublicacao ? estadoApp.dataPublicacao.split('-')[0] : new Date().getFullYear();
+            const urlCompleta = `https://www.youtube.com/watch?v=${estadoApp.videoId || 'ID'}`;
+            const dataAcessoAbnt = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).replace('.', '');
+
+            const nomeCanalAbnt = (estadoApp.canal || 'CANAL').toUpperCase();
+            const citacao = `${nomeCanalAbnt}. ${estadoApp.titulo}. YouTube, ${anoAtual}. Disponível em: <${urlCompleta}>. Acesso em: ${dataAcessoAbnt}.`;
+            document.getElementById('citacaoAbnt').textContent = citacao;
+        }
+
+        function converterTempoGenericoParaSegundos(textoTempo) {
+            const matchMin = textoTempo.match(/(\d+):?(\d*)\s*minutos?/i);
+            const matchSeg = textoTempo.match(/(\d+)\s*segundos?/i);
+
+            let min = 0;
+            let seg = 0;
+
+            if (matchMin) min = parseInt(matchMin[1] || 0);
+            if (matchSeg) seg = parseInt(matchSeg[1] || 0);
+
+            if (!matchMin && !matchSeg) {
+                const partes = textoTempo.split(':').map(Number);
+                if (partes.length === 3) return partes[0] * 3600 + partes[1] * 60 + partes[2];
+                if (partes.length === 2) return partes[0] * 60 + partes[1];
+                return 0;
+            }
+
+            return (min * 60) + seg;
+        }
+
+        function parseTranscricaoFlexivel(textoBruto) {
+            const linhas = textoBruto.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+            const fragmentos = [];
+            let tempoAtual = 0;
+
+            const regexInicioTempo = /^(\d+[:\d]*\s*minutos?\s*(?:e\s*\d+\s*segundos?)?)/i;
+
+            for (let i = 0; i < linhas.length; i++) {
+                let linha = linhas[i];
+                const match = linha.match(regexInicioTempo);
+
+                if (match) {
+                    tempoAtual = converterTempoGenericoParaSegundos(match[0]);
+                    let textoLimpo = linha.replace(regexInicioTempo, '').trim();
+                    textoLimpo = textoLimpo.replace(/[Música]/gi, '').trim();
+
+                    if (textoLimpo) {
+                        fragmentos.push({ tempo: tempoAtual, texto: textoLimpo });
+                    }
+                } else {
+                    let textoLimpo = linha.replace(/[Música]/gi, '').trim();
+                    if (textoLimpo) {
+                        fragmentos.push({ tempo: tempoAtual, texto: textoLimpo });
+                    }
+                }
+            }
+
+            return fragmentos;
+        }
+
+        function agruparTextoEmBlocos(textoBruto, tamanhoBlocoSegundos) {
+            const fragmentos = parseTranscricaoFlexivel(textoBruto);
+            let blocos = [];
+
+            if (fragmentos.length === 0) return blocos;
+
+            let tempoInicioBloco = 0;
+            let tempoFimBloco = tamanhoBlocoSegundos;
+            let textoBloco = [];
+
+            fragmentos.forEach(frag => {
+                while (frag.tempo >= tempoFimBloco) {
+                    if (textoBloco.length > 0) {
+                        blocos.push({
+                            inicio: tempoInicioBloco,
+                            fim: tempoFimBloco,
+                            intervaloStr: `[${formatarTempoCurto(tempoInicioBloco)}- ${formatarTempoCurto(tempoFimBloco)}]`,
+                            texto: textoBloco.join(' ')
+                        });
+                        textoBloco = [];
+                    }
+                    tempoInicioBloco = tempoFimBloco;
+                    tempoFimBloco += tamanhoBlocoSegundos;
+                }
+                textoBloco.push(frag.texto);
+            });
+
+            if (textoBloco.length > 0) {
+                blocos.push({
+                    inicio: tempoInicioBloco,
+                    fim: tempoFimBloco,
+                    intervaloStr: `[${formatarTempoCurto(tempoInicioBloco)}- ${formatarTempoCurto(tempoFimBloco)}]`,
+                    texto: textoBloco.join(' ')
+                });
+            }
+
+            return blocos;
+        }
+
+        document.getElementById('btnProcessarTranscricao').addEventListener('click', () => {
+            const textoBruto = document.getElementById('textoTranscricaoBruta').value.trim();
+            const intervalo = parseInt(document.getElementById('intervaloSegundos').value) || 60;
+            
+            estadoApp.intervaloSegundos = intervalo;
+
+            if (!textoBruto) {
+                alert('Por favor, cole a transcrição no campo de texto.');
+                return;
+            }
+
+            estadoApp.blocos = agruparTextoEmBlocos(textoBruto, intervalo);
+            renderizarListaBlocos();
+        });
+
+        function renderizarListaBlocos() {
+            const container = document.getElementById('listaBlocos');
+            container.innerHTML = '';
+
+            if (estadoApp.blocos.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-500 text-center py-8">Nenhum bloco gerado.</p>`;
+                return;
+            }
+
+            estadoApp.blocos.forEach(bloco => {
+                const div = document.createElement('div');
+                div.className = "p-2.5 bg-[#1e293b] rounded-lg border border-slate-700 space-y-0.5";
+                div.innerHTML = `
+                    <span class="text-[11px] font-bold text-rose-400 font-mono block">${bloco.intervaloStr}</span>
+                    <p class="text-xs text-slate-200 leading-relaxed text-justify">${bloco.texto}</p>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Exportação rigorosa em formato .docx real (WordprocessingML)
+        document.getElementById('btnExportarDocx').addEventListener('click', () => {
+            if (estadoApp.blocos.length === 0) {
+                alert('Gere os blocos de transcrição antes de exportar.');
+                return;
+            }
+
+            const urlCompleta = `https://www.youtube.com/watch?v=${estadoApp.videoId || 'ID'}`;
+            const citacaoAbnt = document.getElementById('citacaoAbnt').textContent;
+            const nomeArquivo = obterNomeArquivoSanitizado();
+
+            let blocosXml = estadoApp.blocos.map(b => `
+                <w:p>
+                    <w:pPr><w:spacing w:after="120"/><w:jc w:val="both"/></w:pPr>
+                    <w:r><w:rPr><w:b/><w:color w:val="881337"/><w:rFonts w:ascii="Courier New" w:hAnsi="Courier New"/><w:sz w:val="22"/></w:rPr><w:t>${b.intervaloStr}</w:t></w:r>
+                </w:p>
+                <w:p>
+                    <w:pPr><w:spacing w:after="240"/><w:jc w:val="both"/></w:pPr>
+                    <w:r><w:rPr><w:color w:val="333333"/><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="22"/></w:rPr><w:t>${b.texto}</w:t></w:r>
+                </w:p>
+            `).join('');
+
+            const xmlDocx = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+            <?mso-application progid="Word.Document"?>
+            <w:wordDocument xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml" xmlns:aml="http://schemas.microsoft.com/aml/2001/core" xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:mo="http://schemas.microsoft.com/office/mac/office/2008/main" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w10="urn:schemas-microsoft-com:office:word">
+              <w:body>
+                <w:p>
+                  <w:pPr><w:jc w:val="center"/><w:spacing w:after="200"/></w:pPr>
+                  <w:r><w:rPr><w:b/><w:sz w:val="32"/><w:color w:val="0F172A"/></w:rPr><w:t>RELATÓRIO DE EVIDÊNCIA AUDIOVISUAL</w:t></w:r>
+                </w:p>
+                <w:p>
+                  <w:pPr><w:jc w:val="center"/><w:spacing w:after="300"/></w:pPr>
+                  <w:r><w:rPr><w:i/><w:sz w:val="20"/><w:color w:val="666666"/></w:rPr><w:t>Documento gerado para fundamentação empírica em pesquisa científica / TCC</w:t></w:r>
+                </w:p>
+
+                <w:p><w:pPr><w:spacing w:before="200" w:after="100"/><w:pBdr><w:bottom w:val="single" w:sz="12" w:space="4" w:color="1E3A8A"/></w:pBdr></w:pPr><w:r><w:rPr><w:b/><w:color w:val="1E3A8A"/><w:sz w:val="26"/></w:rPr><w:t>1. Ficha de Registro da Fonte (Metadados Completo)</w:t></w:r></w:p>
+                
+                <w:p><w:r><w:rPr><w:b/><w:sz w:val="22"/></w:rPr><w:t>Título da Mídia: </w:t></w:r><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t>${estadoApp.titulo}</w:t></w:r></w:p>
+                <w:p><w:r><w:rPr><w:b/><w:sz w:val="22"/></w:rPr><w:t>Nome do Canal: </w:t></w:r><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t>${estadoApp.canal || 'Não informado'}</w:t></w:r></w:p>
+                <w:p><w:r><w:rPr><w:b/><w:sz w:val="22"/></w:rPr><w:t>Data de Publicação: </w:t></w:r><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t>${formatarDataPublicacao(estadoApp.dataPublicacao)}</w:t></w:r></w:p>
+                <w:p><w:r><w:rPr><w:b/><w:sz w:val="22"/></w:rPr><w:t>Duração Total: </w:t></w:r><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t>${estadoApp.tempoTotal || 'Não informada'}</w:t></w:r></w:p>
+                <w:p><w:r><w:rPr><w:b/><w:sz w:val="22"/></w:rPr><w:t>URL de Acesso: </w:t></w:r><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t>${urlCompleta}</w:t></w:r></w:p>
+                <w:p><w:pPr><w:spacing w:after="200"/></w:pPr><w:r><w:rPr><w:b/><w:sz w:val="22"/></w:rPr><w:t>Data de Coleta (Auditoria): </w:t></w:r><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t>${estadoApp.dataColeta}</w:t></w:r></w:p>
+
+                <w:p><w:pPr><w:spacing w:before="200" w:after="100"/><w:pBdr><w:bottom w:val="single" w:sz="12" w:space="4" w:color="1E3A8A"/></w:pBdr></w:pPr><w:r><w:rPr><w:b/><w:color w:val="1E3A8A"/><w:sz w:val="26"/></w:rPr><w:t>2. Descrição da Postagem no YouTube</w:t></w:r></w:p>
+                <w:p><w:pPr><w:spacing w:after="200"/><w:jc w:val="both"/></w:pPr><w:r><w:rPr><w:sz w:val="20"/><w:color w:val="333333"/></w:rPr><w:t>${estadoApp.descricao || 'Nenhuma descrição informada.'}</w:t></w:r></w:p>
+
+                <w:p><w:pPr><w:spacing w:before="200" w:after="100"/><w:pBdr><w:bottom w:val="single" w:sz="12" w:space="4" w:color="1E3A8A"/></w:pBdr></w:pPr><w:r><w:rPr><w:b/><w:color w:val="1E3A8A"/><w:sz w:val="26"/></w:rPr><w:t>3. Sugestão de Citação ABNT</w:t></w:r></w:p>
+                <w:p><w:pPr><w:spacing w:after="200"/></w:pPr><w:r><w:rPr><w:i/><w:sz w:val="22"/><w:color w:val="1E3A8A"/></w:rPr><w:t>${citacaoAbnt}</w:t></w:r></w:p>
+
+                <w:p><w:pPr><w:spacing w:before="200" w:after="100"/><w:pBdr><w:bottom w:val="single" w:sz="12" w:space="4" w:color="1E3A8A"/></w:pBdr></w:pPr><w:r><w:rPr><w:b/><w:color w:val="1E3A8A"/><w:sz w:val="26"/></w:rPr><w:t>4. Transcrição Íntegra Estruturada em Blocos Temporais</w:t></w:r></w:p>
+                ${blocosXml}
+              </w:body>
+            </w:wordDocument>`;
+
+            const blob = new Blob([xmlDocx], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `${nomeArquivo}.docx`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        document.getElementById('btnExportarTxt').addEventListener('click', () => {
+            if (estadoApp.blocos.length === 0) {
+                alert('Gere os blocos de transcrição antes de exportar.');
+                return;
+            }
+
+            const urlCompleta = `https://www.youtube.com/watch?v=${estadoApp.videoId || 'ID'}`;
+            const citacaoAbnt = document.getElementById('citacaoAbnt').textContent;
+            const nomeArquivo = obterNomeArquivoSanitizado();
+
+            let relatorioTxt = `=====================================================================\n`;
+            relatorioTxt += `RELATÓRIO DE EVIDÊNCIA AUDIOVISUAL\n`;
+            relatorioTxt += `=====================================================================\n\n`;
+            
+            relatorioTxt += `1. FICHA DE METADADOS DA FONTE\n`;
+            relatorioTxt += `---------------------------------------------------------------------\n`;
+            relatorioTxt += `Título da Mídia     : ${estadoApp.titulo}\n`;
+            relatorioTxt += `Nome do Canal       : ${estadoApp.canal || 'Não informado'}\n`;
+            relatorioTxt += `Data de Publicação  : ${formatarDataPublicacao(estadoApp.dataPublicacao)}\n`;
+            relatorioTxt += `Duração Total       : ${estadoApp.tempoTotal || 'Não informada'}\n`;
+            relatorioTxt += `URL de Acesso       : ${urlCompleta}\n`;
+            relatorioTxt += `Data de Coleta      : ${estadoApp.dataColeta}\n\n`;
+
+            relatorioTxt += `2. DESCRIÇÃO DA POSTAGEM NO YOUTUBE\n`;
+            relatorioTxt += `---------------------------------------------------------------------\n`;
+            relatorioTxt += `${estadoApp.descricao || 'Nenhuma descrição informada.'}\n\n`;
+
+            relatorioTxt += `3. SUGESTÃO DE CITAÇÃO ABNT\n`;
+            relatorioTxt += `---------------------------------------------------------------------\n`;
+            relatorioTxt += `${citacaoAbnt}\n\n`;
+
+            relatorioTxt += `4. TRANSCRIÇÃO ÍNTEGRA EM BLOCOS TEMPORAIS\n`;
+            relatorioTxt += `---------------------------------------------------------------------\n`;
+            estadoApp.blocos.forEach(b => {
+                relatorioTxt += `${b.intervaloStr}\n${b.texto}\n\n`;
+            });
+
+            const blob = new Blob([relatorioTxt], { type: 'text/plain;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `${nomeArquivo}.txt`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    </script>
+</body>
+</html>
